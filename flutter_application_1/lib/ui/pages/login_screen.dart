@@ -14,9 +14,11 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         AppAuthTextField(
-            text: 'EMAIL OR PHONE',
-            hintText: "Loremipsum@gmail.com",
-            controller: controllerEmail)
+          text: 'EMAIL OR PHONE',
+          hintText: "Loremipsum@gmail.com",
+          controller: controllerEmail,
+          onChanged: (String) {},
+        )
       ]),
     );
   }
