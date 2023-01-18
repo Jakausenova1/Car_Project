@@ -3,6 +3,7 @@ import 'package:flutter_application_1/consts/app_colors.dart';
 import 'package:flutter_application_1/consts/app_fonts.dart';
 
 import '../widgets/app_auth_text_field.dart';
+import '../widgets/app_elevated_button.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -18,6 +19,10 @@ class LoginScreen extends StatelessWidget {
           hintText: "Loremipsum@gmail.com",
           controller: controllerEmail,
           onChanged: (String) {},
+        ),
+        AppElevatedButton(
+          title: "Log In",
+          onPressed: () {},
         )
       ]),
     );
