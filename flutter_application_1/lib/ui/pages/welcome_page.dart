@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/ui/pages/login_page.dart';
 
 import '../../consts/app_colors.dart';
 import '../../consts/app_fonts.dart';
 import '../../consts/app_images.dart';
 import '../widgets/app_round_button.dart';
 
-@override
+class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
+
+  
+  @override
 Widget build(BuildContext context) {
   return Scaffold(
     body: Stack(
@@ -41,7 +46,9 @@ Widget build(BuildContext context) {
                 height: 52,
                 child: RoundedButton(
                   title: "Get Started >",
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => const LoginPage())));
+                  },
                 ),
               ),
               const SizedBox(
@@ -53,4 +60,5 @@ Widget build(BuildContext context) {
       ],
     ),
   );
+}
 }
