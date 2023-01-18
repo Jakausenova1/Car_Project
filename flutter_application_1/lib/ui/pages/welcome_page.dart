@@ -4,6 +4,7 @@ import 'package:flutter_application_1/consts/app_fonts.dart';
 
 import '../../consts/app_images.dart';
 import '../widgets/app_round_button.dart';
+import 'login_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -41,7 +42,14 @@ class HomePage extends StatelessWidget {
                   height: 52,
                   child: RoundedButton(
                     title: "Get Started >",
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(
