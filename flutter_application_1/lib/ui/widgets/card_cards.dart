@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../consts/app_colors.dart';
 import '../../consts/app_fonts.dart';
-import '../../consts/app_images.dart';
 
 class CarCard extends StatelessWidget {
   const CarCard({
