@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/consts/app_images.dart';
+import 'package:flutter_application_1/models/slider_item_model.dart';
+import 'package:flutter_application_1/ui/pages/car_info_page.dart';
 
 import '../../consts/app_colors.dart';
 import '../../consts/app_fonts.dart';
@@ -21,14 +21,17 @@ double blurRadius = 3;
 List<String> labels = ["Family cars", "Cheap cars", "Luxury cars"];
 int currentLabel = 0;
 
+  final slider = SliderItemModel(subTitle: 'Automatic', title: 'Transition');
+  final slider2 = SliderItemModel(subTitle: ' 200kmph', title: 'Speed');
+
 List<CarModels> data = [
-  CarModels(image: AppImages.camry, price: 500, title: "Camry"),
-  CarModels(image: AppImages.audi, price: 180, title: "AUDI Red A6"),
-  CarModels(image: AppImages.range, price: 150, title: "RANGE ROVER"),
-  CarModels(image: AppImages.lamb, price: 550, title: "LAMBORGHINI"),
-  CarModels(image: AppImages.tesla, price: 150, title: "TESLA"),
-  CarModels(image: AppImages.whiteRange, price: 200, title: "RANGE ROVER"),
-  CarModels(image: AppImages.black, price: 100, title: "TOYOTA"),
+  CarModels(image: AppImages.camry, price: 500, title: "Camry", sliders: [slider, slider2, slider,slider2]),
+  CarModels(image: AppImages.audi, price: 180, title: "AUDI Red A6", sliders: [slider, slider2, slider,slider2]),
+  CarModels(image: AppImages.range, price: 150, title: "RANGE ROVER", sliders: [slider, slider2, slider,slider2]),
+  CarModels(image: AppImages.lamb, price: 550, title: "LAMBORGHINI", sliders: [slider, slider2, slider,slider2]),
+  CarModels(image: AppImages.tesla, price: 150, title: "TESLA", sliders: [slider, slider2, slider,slider2]),
+  CarModels(image: AppImages.whiteRange, price: 200, title: "RANGE ROVER", sliders: [slider, slider2, slider,slider2]),
+  CarModels(image: AppImages.black, price: 100, title: "TOYOTA", sliders: [slider, slider2, slider,slider2]),
 ];
 
 class _HomePageState extends State<HomePage> {
@@ -67,115 +70,117 @@ class _HomePageState extends State<HomePage> {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    InkWell(
-                      onTapDown: (_) {
-                        spreadRadius = 0;
-                        blurRadius = 0;
-                        setState(() {});
-                      },
-                      onTapUp: (_) {
-                        spreadRadius = 2;
-                        blurRadius = 3;
-                        setState(() {});
-                      },
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) => AlertDialog(
-                            content: IconButton(
-                              icon: const Icon(Icons.close),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTapDown: (_) {
+                      spreadRadius = 0;
+                      blurRadius = 0;
+                      setState(() {});
+                    },
+                    onTapUp: (_) {
+                      spreadRadius = 2;
+                      blurRadius = 3;
+                      setState(() {});
+                    },
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          content: IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                           ),
-                        );
-                      },
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 100),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            boxShadow: [
-                              BoxShadow(
-                                spreadRadius: spreadRadius,
-                                blurRadius: blurRadius,
-                                color: AppColors.black.withOpacity(0.6),
-                              )
-                            ]),
-                        child: Image.asset(AppImages.banner),
+                        ),
+                      );
+                    },
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 100),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              spreadRadius: spreadRadius,
+                              blurRadius: blurRadius,
+                              color: AppColors.black.withOpacity(0.6),
+                            )
+                          ]),
+                      child: Image.asset(AppImages.banner),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomChip(
+                        label: labels[0],
+                        selected: currentLabel == 0,
+                        onSelected: (isSelected) {
+                          currentLabel = 0;
+                          setState(() {});
+                        },
                       ),
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomChip(
-                          label: labels[0],
-                          selected: currentLabel == 0,
-                          onSelected: (isSelected) {
-                            currentLabel = 0;
-                            setState(() {});
-                          },
-                        ),
-                        CustomChip(
-                          label: labels[1],
-                          selected: currentLabel == 1,
-                          onSelected: (isSelected) {
-                            currentLabel = 1;
-                            setState(() {});
-                          },
-                        ),
-                        CustomChip(
-                          label: labels[2],
-                          selected: currentLabel == 2,
-                          onSelected: (isSelected) {
-                            currentLabel = 2;
-                            setState(() {});
-                          },
-                        ),
-                        const Icon(Icons.search),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 60,
-                    ),
-                    Text(
-                      "Cars Available Near You",
-                      style: AppFonts.w400s20.copyWith(color: AppColors.black),
-                    ),
-                    Row(
-                      children: [
-                        const Spacer(),
-                        Text(
-                          "View more",
-                          style: AppFonts.w400s12.copyWith(color: AppColors.red),
-                        ),
-                      ],
-                    ),
-                    GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: data.length,
-                      shrinkWrap: true,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
+                      CustomChip(
+                        label: labels[1],
+                        selected: currentLabel == 1,
+                        onSelected: (isSelected) {
+                          currentLabel = 1;
+                          setState(() {});
+                        },
                       ),
-                      itemBuilder: (BuildContext context, int index) {
-                        return CarCard(
-                            image: data[index].image,
-                            price: data[index].price,
-                            title: data[index].title);
-                      },
-                      
+                      CustomChip(
+                        label: labels[2],
+                        selected: currentLabel == 2,
+                        onSelected: (isSelected) {
+                          currentLabel = 2;
+                          setState(() {});
+                        },
+                      ),
+                      const Icon(Icons.search),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  Text(
+                    "Cars Available Near You",
+                    style: AppFonts.w400s20.copyWith(color: AppColors.black),
+                  ),
+                  Row(
+                    children: [
+                      const Spacer(),
+                      Text(
+                        "View more",
+                        style: AppFonts.w400s12.copyWith(color: AppColors.red),
+                      ),
+                    ],
+                  ),
+                  GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: data.length,
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
                     ),
-                  ],
-                ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return CarCard(
+                        onTap: (){
+                          Navigator.push(context,MaterialPageRoute(builder: (context)=> CarInfoPage(model: data[index])));
+                        },
+                          image: data[index].image,
+                          price: data[index].price,
+                          title: data[index].title);
+                    },
+                    
+                  ),
+                ],
               ),
             ),
           ),

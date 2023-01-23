@@ -57,7 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
               hintText: 'Loremipsum@gmail.com',
               controller: emailController,
               onChanged: (val) {
-                if (val.length > 0 && !val.contains('@')) {
+                if (val.isNotEmpty && !val.contains('@')) {
                   emailError = 'Не правильный эл.почта';
                 } else {
                   emailError = null;

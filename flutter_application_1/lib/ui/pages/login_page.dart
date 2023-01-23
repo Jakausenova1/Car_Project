@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
               hintText: 'Loremipsum@gmail.com',
               controller: passwordController,
               onChanged: (val) {
-                if (val.length > 0 && val.length < 6) {
+                if (val.isNotEmpty && val.length < 6) {
                   passwordError = "Пароль должен быть не менее 6 символов!";
                 } else {
                   passwordError = null;
