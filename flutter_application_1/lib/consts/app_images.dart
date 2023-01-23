@@ -12,4 +12,7 @@ abstract class AppImages {
   static const String audi = "assets/audi.png";
   static const String black = "assets/black.png";
   static const String whiteRange = "assets/whiteRange.png";
+  static const String message = "assets/message.png";
+  static const String call = "assets/call.png";
+  static const String salesname = "assets/salesman.png";
 }
