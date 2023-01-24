@@ -34,22 +34,6 @@ class CarAppBar extends StatelessWidget {
           ),
           onPressed: onOptionPressed,
         ),],
-      // title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      //   IconButton(
-      //     icon: const Icon(
-      //       Icons.arrow_back_ios,
-      //       color: AppColors.white,
-      //     ),
-      //     onPressed: onBackPressed,
-      //   ),
-      //   IconButton(
-      //     icon: const Icon(
-      //       Icons.more_vert,
-      //       color: AppColors.white,
-      //     ),
-      //     onPressed: onOptionPressed,
-      //   ),
-      // ]),
       pinned: true,
       backgroundColor: backgroundColor,
       expandedHeight: 400,
@@ -70,15 +54,18 @@ class CarAppBar extends StatelessWidget {
                   child: Center(
                       child: Text(
                     "TIIRA",
-                    style: AppFonts.w400s150.copyWith(color: AppColors.white50),
+                    style: AppFonts.w400s130.copyWith(color: AppColors.white.withOpacity(0.5)),
                     textAlign: TextAlign.center,
                   ))),
               Positioned(
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  child: Image.asset(
-                    iamge,
+                  child: Hero(
+                    tag: iamge,
+                    child: Image.asset(
+                      iamge, fit: BoxFit.contain,
+                    ),
                   )),
             ],
           ),

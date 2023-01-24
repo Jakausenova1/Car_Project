@@ -29,6 +29,7 @@ List<CarModels> data = [
   CarModels(image: AppImages.audi, price: 180, title: "AUDI Red A6", sliders: [slider, slider2, slider,slider2]),
   CarModels(image: AppImages.range, price: 150, title: "RANGE ROVER", sliders: [slider, slider2, slider,slider2]),
   CarModels(image: AppImages.lamb, price: 550, title: "LAMBORGHINI", sliders: [slider, slider2, slider,slider2]),
+  CarModels(image: AppImages.lamb2, price: 570, title: "LAMBORGHINI", sliders: [slider, slider2, slider,slider2]),
   CarModels(image: AppImages.tesla, price: 150, title: "TESLA", sliders: [slider, slider2, slider,slider2]),
   CarModels(image: AppImages.whiteRange, price: 200, title: "RANGE ROVER", sliders: [slider, slider2, slider,slider2]),
   CarModels(image: AppImages.black, price: 100, title: "TOYOTA", sliders: [slider, slider2, slider,slider2]),
@@ -162,21 +163,30 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   GridView.builder(
+                    padding: const EdgeInsets.all(10),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: data.length,
                     shrinkWrap: true,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+                      childAspectRatio: 0.995,
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       return CarCard(
                         onTap: (){
-                          Navigator.push(context,MaterialPageRoute(builder: (context)=> CarInfoPage(model: data[index])));
+                          Navigator.push(context,PageRouteBuilder(
+                            transitionDuration: const Duration(milliseconds: 500),
+                            reverseTransitionDuration: const Duration(milliseconds: 500),
+                            pageBuilder: (context, animation, secondaryAnimation) {
+                            return FadeTransition(opacity: animation, child: CarInfoPage(model: data[index]),);
+                            
+                          }));
                         },
-                          image: data[index].image,
-                          price: data[index].price,
-                          title: data[index].title);
+                        onPressedLike: (){},
+                          model: data[index],);
                     },
                     
                   ),

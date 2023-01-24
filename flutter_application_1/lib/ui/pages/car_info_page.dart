@@ -39,7 +39,7 @@ class _CarInfoPageState extends State<CarInfoPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "${widget.model.title}",
+                        widget.model.title,
                         style:
                             AppFonts.w400s16.copyWith(color: AppColors.black),
                       ),

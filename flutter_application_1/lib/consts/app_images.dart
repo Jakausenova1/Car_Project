@@ -7,6 +7,7 @@ abstract class AppImages {
   static const String banner = "assets/banner.png";
   static const String camry = "assets/camry.png";
   static const String lamb = "assets/lamb.png";
+  static const String lamb2 = "assets/lamb2.png";
   static const String range = "assets/range.png";
   static const String tesla = "assets/tesla.png";
   static const String audi = "assets/audi.png";
