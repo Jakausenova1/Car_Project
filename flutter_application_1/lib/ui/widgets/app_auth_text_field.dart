@@ -34,7 +34,9 @@ class AppAuthTextField extends StatelessWidget {
           ),
         ),
         TextField(
-          onChanged: onChanged,
+          onChanged: (v){
+            
+          },
           obscureText: obscureText,
           controller: controller,
           decoration: InputDecoration(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/consts/app_colors.dart';
 import 'package:flutter_application_1/consts/app_fonts.dart';
 import 'package:flutter_application_1/consts/app_images.dart';
+import 'package:flutter_application_1/ui/pages/home_page.dart';
 import 'package:flutter_application_1/ui/pages/login_page.dart';
 import 'package:flutter_application_1/ui/widgets/app_auth_text_field.dart';
 import 'package:flutter_application_1/ui/widgets/app_border_button.dart';
@@ -56,7 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
               hintText: 'Loremipsum@gmail.com',
               controller: emailController,
               onChanged: (val) {
-                if (val.length > 0 && !val.contains('@')) {
+                if (val.isNotEmpty && !val.contains('@')) {
                   emailError = 'Не правильный эл.почта';
                 } else {
                   emailError = null;
@@ -102,7 +103,14 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(
               height: 30,
             ),
-            AppElevatedButton(title: 'Log In', onPressed: () {}),
+            AppElevatedButton(
+                title: 'Log In',
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => const HomePage())));
+                }),
             Container(
                 margin: const EdgeInsets.symmetric(vertical: 9),
                 alignment: Alignment.center,
